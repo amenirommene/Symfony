@@ -1,0 +1,27 @@
+{% set nb=0 %}
+{% set nomF="" %}
+{% set total=0 %}
+<table border="1">
+    <tr>
+        <th>ref</th>
+    <th>Titre</th>
+    </tr>
+    {% for f in mesformations %}
+        {% set total = total + f.nb_participants  %}
+        {% set nb=max(nb,f.nb_participants) %}
+        {% if  nb == f.nb_participants %}
+        {%  set nomF = f.Titre %}
+        {% endif %}
+        {% if f.Description == 'formation theorique' %}
+        <tr>
+    <td>{{ f.ref }}</td>
+    <td>{{ f.Titre|upper }}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+
+Le nombre de formation est {{ mesformations|length }}<br>
+le nombre max de participants de la formation {{ nomF }} est : {{ nb }}<br>
+total : {{ total }}
+
