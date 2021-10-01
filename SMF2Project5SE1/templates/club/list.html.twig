@@ -1,0 +1,30 @@
+<img src="{{ asset('images/admin.png')  }}"  >
+{% set nb=0 %}
+{% set total=0 %}
+{% set titre="" %}
+<table>
+    <tr>
+        <td>Ref</td>
+        <td>Titre</td>
+    </tr>
+    {% for f in mesFormations %}
+        {% set nb = max(nb,f.nb_participants) %}
+        {% set total=total+f.nb_participants %}
+        {% if f.nb_participants == nb %}
+            {% set titre=f.Titre %}
+        {% endif %}
+        {% if f.Description == "formation theorique" %}
+    <tr>
+        <td>{{ f.ref }}</td>
+        <td>{{ f.Titre|upper }}</td>
+    </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+
+le nombre de formation est {{ mesFormations|length }}
+<br>
+Le nombre max de participants est {{ nb }} qui est {{ titre }}
+<br>
+Total : {{ total }}
+
