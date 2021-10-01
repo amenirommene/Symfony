@@ -1,0 +1,10 @@
+<ul>
+{% for f in mesformations %}
+    {% if f.Description == 'formation theorique' %}
+    <li>{{ f.ref  }} ** {{ f.Titre|upper  }}</li>
+
+    {%  endif %}
+{% endfor %}
+
+</ul>
+Le nombre total de formations est {{ mesformations|length }}
