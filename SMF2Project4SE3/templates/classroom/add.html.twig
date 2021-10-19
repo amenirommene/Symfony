@@ -1,0 +1,18 @@
+{#  {{ form(monFormulaire) }} #}
+<table>
+{{ form_start(monFormulaire) }}
+<tr>
+    <td>
+{{ form_label(monFormulaire.name, "Le nom: " ) }}
+    </td>
+    <td>
+        {{ form_widget(monFormulaire.name) }}
+    </td>
+</tr>
+  <tr>
+      <td></td>
+      <td>{{ form_widget(monFormulaire.Ajouter) }}</td>
+  </tr>
+{{ form_end(monFormulaire) }}
+</table>
+
