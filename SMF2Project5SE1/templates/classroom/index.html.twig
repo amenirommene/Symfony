@@ -1,5 +1,5 @@
 <ul>
     {% for l in list %}
-    <li>{{ l.id }} ** {{ l.Name }}</li>
+    <li>{{ l.id }} ** {{ l.Name }} <a href="{{ path('updateClassroom', {id:l.id}) }}">Modifier</a></li>
     {% endfor %}
 </ul>

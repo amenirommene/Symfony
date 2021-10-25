@@ -1,0 +1,5 @@
+<ul>
+{% for s in students %}
+<li>{{ s.nsc }} ** {{ s.email }} ** {{ s.classe.name}}</li>
+{% endfor %}
+</ul>

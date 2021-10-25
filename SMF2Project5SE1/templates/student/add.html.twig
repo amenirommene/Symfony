@@ -1,0 +1,23 @@
+<h1>Add Student</h1>
+
+{{ form_start(myForm) }}
+<table>
+    <tr>
+        <td>{{ form_label(myForm.nsc, "Num inscription") }}</td>
+        <td>{{ form_widget(myForm.nsc) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(myForm.email) }}</td>
+        <td>{{ form_widget(myForm.email) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(myForm.classe) }}</td>
+        <td>{{ form_widget(myForm.classe) }}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>{{ form_widget(myForm.Ajouter) }}</td>
+    </tr>
+</table>
+
+{{ form_end(myForm) }}
