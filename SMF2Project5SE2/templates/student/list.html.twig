@@ -1,0 +1,8 @@
+liste des étudiants:
+<ul>
+    {% for l in  list %}
+        <li>{{ l.nsc }} ** {{ l.email }} ** {{ l.classroom.name }} <a href="{{ path("updateStudent",{id:l.nsc}) }}">Modifier</a>
+                <a href="{{ path("deleteStudent",{id:l.nsc}) }}">Supprimer</a></li>
+
+    {% endfor %}
+</ul>
