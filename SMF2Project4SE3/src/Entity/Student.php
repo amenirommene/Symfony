@@ -17,9 +17,22 @@ class Student
     private $nsc;
 
     /**
+     * @param mixed $nsc
+     */
+    public function setNsc($nsc): void
+    {
+        $this->nsc = $nsc;
+    }
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $email;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Classroom::class, inversedBy="stds")
+     */
+    private $classroom;
 
     public function getNsc(): ?int
     {
@@ -34,6 +47,18 @@ class Student
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getClassroom(): ?Classroom
+    {
+        return $this->classroom;
+    }
+
+    public function setClassroom(?Classroom $classroom): self
+    {
+        $this->classroom = $classroom;
 
         return $this;
     }

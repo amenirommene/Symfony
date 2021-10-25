@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Classroom;
 use App\Entity\Student;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,7 +18,13 @@ class StudentType extends AbstractType
         $builder
             ->add('nsc')
             ->add('email')
-            ->add('Ajouter',SubmitType::class)
+            ->add('classroom', EntityType::class, [
+                'class'=>Classroom::class,
+                'choice_label'=>'name',
+                'multiple'=>false,
+                'expanded'=>false
+            ])
+            ->add('Ajouter', SubmitType::class)
         ;
     }
 

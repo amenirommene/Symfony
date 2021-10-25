@@ -1,1 +1,23 @@
-{{ form(myForm) }}
+{{ form_start(myForm) }}
+<table>
+
+    <tr>
+        <td>{{ form_label(myForm.nsc, "N° inscription") }}</td>
+        <td>{{ form_widget(myForm.nsc) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(myForm.email, "Adresse electronique") }}</td>
+        <td>{{ form_widget(myForm.email) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(myForm.classroom, "Classe") }}</td>
+        <td>{{ form_widget(myForm.classroom) }}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>{{ form_widget(myForm.Ajouter) }}</td>
+    </tr>
+</table>
+
+{{ form_end(myForm) }}
+
