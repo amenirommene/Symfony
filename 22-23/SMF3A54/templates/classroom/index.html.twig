@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+    </tr>
+{% for c in listCl %}
+    <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.name }}</td>
+    </tr>
+{% endfor %}
+</table>

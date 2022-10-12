@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Classroom;
+use App\Repository\ClassroomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
