@@ -2,11 +2,13 @@
  <tr>
   <td>Id</td>
   <td>Name</td>
+  <td></td>
  </tr>
 {% for c in listOfClassroom %}
  <tr>
   <td>{{ c.id }}</td>
   <td>{{ c.Name }}</td>
+  <td><a href="{{ path('app_delete2_classroom',{'id':c.id}) }}">delete</a></td>
  </tr>
 {% endfor %}
 </table>
