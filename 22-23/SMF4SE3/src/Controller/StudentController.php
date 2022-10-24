@@ -44,4 +44,24 @@ class StudentController extends AbstractController
         return $this->renderForm("student/add.html.twig", ['f'=>$form]);
 
     }
+
+    #[Route('/updatestudent/{num}', name: 'app_update_student')]
+    public function update(StudentRepository $repo, ManagerRegistry $doctrine, Request $request): Response
+    {
+        $num_inscrit=$request->get('num');
+      //  $nb=$request->get('nb');
+        $student=$repo->find($num_inscrit);
+        $form=$this->createForm(StudentType::class,$student );
+        //handleRequest : rempli l'objet student à partir du formulaire
+        //+ détecte si le formulaire isSubmitted et valid
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $em=$doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute("app_list_student");
+        }
+        return $this->renderForm("student/add.html.twig", ['f'=>$form]);
+
+    }
+
 }

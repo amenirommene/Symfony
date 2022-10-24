@@ -38,21 +38,29 @@ class ClassroomRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+//format annotation
 
-//    /**
-//     * @return Classroom[] Returns an array of Classroom objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Classroom[] Returns an array of Classroom objects
+     */
+    public function findByNameField($value): array
+    {
+        //select * from Classroom
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.Name Like :valN')
+            ->setParameter('valN', $value . '%')
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByNameFieldDQL($value): array
+    {
+       $query= $this->getEntityManager()->createQuery("SELECT c from App\Entity\Classroom c where c.Name=:val ORDER By c.id DESC");
+       $query->setParameter('val', $value);
+       return $query->getResult();
+    }
 
 //    public function findOneBySomeField($value): ?Classroom
 //    {

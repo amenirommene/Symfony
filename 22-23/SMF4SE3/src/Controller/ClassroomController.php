@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Classroom;
+use App\Repository\ClassroomRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -95,4 +96,38 @@ class ClassroomController extends AbstractController
         return $this->redirectToRoute("app_list_classroom");
 
     }
+
+    #[Route('/find', name: 'app_find_classroom')]
+    public function findClassroom(ClassroomRepository $repo): Response
+    {
+        $list = $repo->findByNameField('4S');
+        return $this->render('classroom/list.html.twig', [
+            'listOfClassroom' => $list,
+        ]);
+    }
+
+    #[Route('/find2/{cl}', name: 'app_find2_classroom')]
+    public function find2Classroom($cl,ClassroomRepository $repo): Response
+    {
+        $list=$repo->createQueryBuilder('c')
+            ->andWhere('c.Name = :valN')
+            ->setParameter('valN', $cl)
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(2)
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('classroom/list.html.twig', [
+            'listOfClassroom' => $list,
+        ]);
+    }
+    #[Route('/find3', name: 'app_find3_classroom')]
+    public function find3Classroom(ClassroomRepository $repo): Response
+    {
+        $list = $repo->findByNameFieldDQL('4SE3');
+        return $this->render('classroom/list.html.twig', [
+            'listOfClassroom' => $list,
+        ]);
+    }
+
 }

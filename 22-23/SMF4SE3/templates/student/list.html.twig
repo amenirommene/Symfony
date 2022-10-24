@@ -1,4 +1,5 @@
 {% for st in students %}
     {{ st.nsc }} ** {{ st.email }} ** {{ st.classroomId.name }}
+    ** <a href="{{ path('app_update_student', {'num':st.nsc}) }}">Modifier</a>
 <br>
 {% endfor %}
