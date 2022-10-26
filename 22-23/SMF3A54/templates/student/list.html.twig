@@ -3,12 +3,14 @@
         <td>Nsc</td>
         <td>Email</td>
         <td>Classe</td>
+        <td></td>
     </tr>
     {% for st in students %}
     <tr>
         <td>{{ st.nsc }}</td>
         <td>{{ st.email | upper }}</td>
         <td>{{ st.classroom.Name }}</td>
+        <td><a href="{{ path('app_update_student', {'num':st.nsc}) }}">Update</a></td>
     </tr>
     {% endfor %}
 </table>

@@ -24,7 +24,7 @@ class Classroom
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $salle = null;
 
-    #[ORM\OneToMany(mappedBy: 'classroom', targetEntity: Student::class)]
+    #[ORM\OneToMany(mappedBy: 'classroom', targetEntity:Student::class, cascade:["remove"])]
     private Collection $students;
 
     public function __construct()

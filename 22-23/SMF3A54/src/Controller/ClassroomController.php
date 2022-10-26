@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Classroom;
+use App\Repository\ClassroomRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -96,5 +97,14 @@ class ClassroomController extends AbstractController
         $repo->remove($cl,true);
 
         return new Response("deleted");
+    }
+
+    #[Route('/findC/{name}', name: 'app_find_classroom')]
+    public function getClassroomFromByName($name,ClassroomRepository $repo,ManagerRegistry $doctrine): Response
+    {
+        //$repo=$doctrine->getRepository(Classroom::class);
+       // $list=$repo->findByNameField($name);
+        $list=$repo->findByNameFieldDQL($name);
+        return $this->render("classroom/index.html.twig", ['listCl'=>$list]);
     }
 }
