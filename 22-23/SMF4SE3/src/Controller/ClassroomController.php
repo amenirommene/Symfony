@@ -109,13 +109,14 @@ class ClassroomController extends AbstractController
     #[Route('/find2/{cl}', name: 'app_find2_classroom')]
     public function find2Classroom($cl,ClassroomRepository $repo): Response
     {
-        $list=$repo->createQueryBuilder('c')
+        $req=$repo->createQueryBuilder('c')
             ->andWhere('c.Name = :valN')
             ->setParameter('valN', $cl)
             ->orderBy('c.id', 'DESC')
             ->setMaxResults(2)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
+        var_dump($req->getSQL());
+          $list=$req->getResult();
 
         return $this->render('classroom/list.html.twig', [
             'listOfClassroom' => $list,

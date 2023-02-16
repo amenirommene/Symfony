@@ -1,1 +1,23 @@
-{{ form(f) }}
+{{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+<table>
+    <tr>
+        <td>{{ form_label(form.nsc, "Num inscription") }}</td>
+        <td>{{ form_widget(form.nsc) }}
+            {{ form_errors(form.nsc) }}
+        </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.email, "Votre email") }}</td>
+        <td>{{ form_widget(form.email) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.classroom_id, "Classe") }}</td>
+        <td>{{ form_widget(form.classroom_id) }}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>{{ form_widget(form.Save) }}</td>
+    </tr>
+</table>
+
+{{ form_end(form) }}

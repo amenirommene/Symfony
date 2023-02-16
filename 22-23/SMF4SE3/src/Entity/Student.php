@@ -4,12 +4,14 @@ namespace App\Entity;
 
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
 class Student
 {
     #[ORM\Id]
     #[ORM\Column]
+    #[Assert\NotBlank(message:"nsc obligatoire")]
     private ?int $nsc = null;
 
     #[ORM\Column(length: 255)]

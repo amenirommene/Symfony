@@ -36,12 +36,12 @@ class StudentController extends AbstractController
         $student=new Student();
         $form=$this->createForm(StudentType::class,$student );
         $form->handleRequest($request);
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted() && $form->isValid()){
             $em=$doctrine->getManager();
             $em->persist($student);
             $em->flush();
         }
-        return $this->renderForm("student/add.html.twig", ['f'=>$form]);
+        return $this->renderForm("student/add.html.twig", ['form'=>$form]);
 
     }
 
@@ -64,4 +64,10 @@ class StudentController extends AbstractController
 
     }
 
+    #[Route('/getlist', name: 'app_email_student')]
+    public function listemail(StudentRepository $repo): Response
+    {
+       $list=$repo->getStudents();
+        return $this->render("student/list.html.twig", ['students'=>$list]);
+    }
 }

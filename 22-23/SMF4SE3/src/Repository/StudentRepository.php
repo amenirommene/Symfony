@@ -39,6 +39,16 @@ class StudentRepository extends ServiceEntityRepository
         }
     }
 
+    public function getStudents(){
+        return $this->createQueryBuilder('s')
+         //   ->andWhere('s.ema = :val')
+         //  ->setParameter('val', $value)
+            ->orderBy('s.email', 'ASC')
+        //    ->setMaxResults(10)
+            ->getQuery()
+           ->getResult();
+    }
+
 //    /**
 //     * @return Student[] Returns an array of Student objects
 //     */
