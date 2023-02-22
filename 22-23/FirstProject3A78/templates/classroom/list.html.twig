@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <td>id</td>
+        <td>Name</td>
+        <td>nb students</td>
+    </tr>
+    {% for cl in listecl %}
+        <tr>
+            <td>{{ cl.id }}</td>
+            <td>{{ cl.name }}</td>
+            <td>{{ cl.nbstudents }}</td>
+        </tr>
+    {% endfor %}
+</table>
