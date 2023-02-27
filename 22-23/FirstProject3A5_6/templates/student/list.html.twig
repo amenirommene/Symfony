@@ -1,0 +1,10 @@
+<ul>
+{% for l in lists %}
+<li>{{ l.nsc }} ** {{ l.email }} ** {{ l.classroom.name }}
+<a href="{{ path("app_update_student",{'id':l.nsc}) }}">
+    Modifier
+</a>
+</li>
+{% endfor %}
+
+</ul>
