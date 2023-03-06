@@ -93,7 +93,9 @@ class Classroom
         return $this;
     }
 
-
+public function __toString(){
+        return $this.$this->getName();
+}
 
 
 }

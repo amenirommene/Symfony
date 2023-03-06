@@ -73,4 +73,13 @@ class StudentController extends AbstractController
             'myform' => $form,
         ]);
     }
+
+    #[Route('/student/get/{email}', name: 'app_get_email_student')]
+    public function getStudentByEmail($email,StudentRepository $r):Response
+    {
+       $list=$r->findByAdresseEmail($email);
+        return $this->render('student/list.html.twig', [
+            'lists' => $list,
+        ]);
+    }
 }
