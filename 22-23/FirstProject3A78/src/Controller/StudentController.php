@@ -71,4 +71,46 @@ class StudentController extends AbstractController
         return $this->renderForm('student/add.html.twig',[
             'myForm' => $form]);
     }
+    #[Route('/student/update2/{id}', name: 'app_update2_student')]
+    public function update2Student(Student $student,Request $request,ManagerRegistry $doctrine): Response
+    {
+       /* $nsc=$request->get('id');
+        $repo=$doctrine->getRepository(Student::class);
+
+        $student=$repo->find($nsc);*/
+        $form=$this->createForm(StudentType::class,$student);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em=$doctrine->getManager();
+            //  $em->persist($student);
+            $em->flush();
+            return $this->redirectToRoute("app_list_student");
+        }
+        return $this->renderForm('student/add.html.twig',[
+            'myForm' => $form]);
+    }
+
+    #[Route('/student/get/{email}', name: 'app_getemail_student')]
+    public function getStudentByEmail(Request $request,ManagerRegistry $doctrine): Response
+    {
+        //récupérer la valeur du paramètre email
+        $email=$request->get('email');
+        $repo=$doctrine->getRepository(Student::class);
+        $list=$repo->findByEmailStudent($email);
+        return $this->render('student/list.html.twig', [
+            'students' => $list,
+        ]);
+    }
+    #[Route('/student/getdql/{email}', name: 'app_getemaildql_student')]
+    public function getStudentByEmailDQL(Request $request,StudentRepository $repo): Response
+    {
+        //récupérer la valeur du paramètre email
+        $email=$request->get('email');
+       // $repo=$doctrine->getRepository(Student::class);
+        $list=$repo->findByEmailStudentDQL($email);
+        return $this->render('student/list.html.twig', [
+            'students' => $list,
+        ]);
+    }
 }

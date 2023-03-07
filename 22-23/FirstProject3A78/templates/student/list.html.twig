@@ -1,6 +1,9 @@
 <ul>
     {% for s in students %}
-        {{ s.nsc }} ** {{ s.email }} ** {{ s.classroom.name }}
+    <li>    {{ s.nsc }} ** {{ s.email }} ** {{ s.classroom.name }}
         <a href="{{ path('app_update_student', {'id':s.nsc}) }}">Modifier</a>
+            <a href="{{ path('app_update2_student', {'id':s.nsc}) }}">Modifier2</a>
+
     {% endfor %}
+    </li>
 </ul>

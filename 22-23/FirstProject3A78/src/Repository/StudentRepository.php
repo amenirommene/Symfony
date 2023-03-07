@@ -42,25 +42,23 @@ class StudentRepository extends ServiceEntityRepository
 //    /**
 //     * @return Student[] Returns an array of Student objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Student
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findByEmailStudent($value): array
+    {
+       return $this->createQueryBuilder('a') //select * from Student
+            ->andWhere('a.email  like :val')
+            ->setParameter('val', '%'.'@'.$value)
+           ->orderBy('a.nsc', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult() //éxuécution de la requête et le retour du résultat
+       ;
+    }
+    public function findByEmailStudentDQL($value): array
+    {
+        $entityM = $this->getEntityManager();
+        $query = $entityM->createQuery(
+            "select s from App\Entity\Student s where s.email like :val ");
+        $query->setParameter('val','%'.'@'.$value);
+        return $query->getResult();
+    }
 }
